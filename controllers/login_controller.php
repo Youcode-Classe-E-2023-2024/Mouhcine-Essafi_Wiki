@@ -6,15 +6,10 @@ if (isset($_POST['log_email'])) {
     $registrationResult = $userRegistration->loginUser($_POST['log_email'], $_POST['log_password']);
     // echo $registrationResult ;
     if (is_int($registrationResult) === true) {
-        // header('location: index.php?page=home');
-        // echo $_POST['log_email'];
         $_SESSION['email'] = $_POST['log_email'];
-        $registrationResult = "Login successful";
-        echo $registrationResult;
+        echo "Login successful";
         die();
     } else {
-        // header('location: index.php?page=login');
-        // echo $_POST['log_email'];
         echo $registrationResult;
         die();
     }
