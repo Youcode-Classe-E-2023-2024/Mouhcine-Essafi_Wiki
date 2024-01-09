@@ -9,12 +9,13 @@ if (isset($_POST['log_email'])) {
         // header('location: index.php?page=home');
         // echo $_POST['log_email'];
         $_SESSION['email'] = $_POST['log_email'];
-        echo 'valide';
+        $registrationResult = "Login successful";
+        echo $registrationResult;
         die();
     } else {
         // header('location: index.php?page=login');
         // echo $_POST['log_email'];
-        echo 'not valide';
-        exit();
+        echo $registrationResult;
+        die();
     }
 }
