@@ -8,7 +8,7 @@
                         <input name="log_email" class="form-control py-4 w-100 mb-2" type="text" placeholder="email"/>
                         <input name="log_password" class="form-control py-4 w-100 mb-3" type="password" placeholder="Password"/>
                     <div class="form-group">
-                        <button class="btn btn-primary w-100" type="submit">Login</button>
+                        <button name="submit" class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
                     <div class="text-center mb-4">
                         <span class="text-white-50">Don't have an account?</span>
