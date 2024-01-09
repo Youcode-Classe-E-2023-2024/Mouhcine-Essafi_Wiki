@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <h5 class="text-white text-center mt-5 mb-4">Enter your informations</h5>
-                <form>
+                <form id="loginForm">
                     <div class="form-group">
                         <input class="form-control py-4 w-100 mb-2" type="text" placeholder="email"/>
                         <input class="form-control py-4 w-100 mb-3" type="password" placeholder="Password"/>
