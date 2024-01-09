@@ -5,8 +5,8 @@
                 <h5 class="text-white text-center mt-5 mb-4">Enter your informations</h5>
                 <form id="loginForm">
                     <div class="form-group">
-                        <input class="form-control py-4 w-100 mb-2" type="text" placeholder="email"/>
-                        <input class="form-control py-4 w-100 mb-3" type="password" placeholder="Password"/>
+                        <input name="log_email" class="form-control py-4 w-100 mb-2" type="text" placeholder="email"/>
+                        <input name="log_password" class="form-control py-4 w-100 mb-3" type="password" placeholder="Password"/>
                     <div class="form-group">
                         <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
