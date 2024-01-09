@@ -14,7 +14,7 @@ class UserLogin
         // Validate input data
         // || (!$this->validatePassword($password))
         if ((!$this->validateEmail($email)) )  {
-            return "Invalid input data";
+            return "Invalid Email";
         }
 
         // Retrieve user data from the database
@@ -29,7 +29,7 @@ class UserLogin
 
         // Check if the username exists
         if (!$userData) {
-            return "User not found";
+            return "Email not registered";
         }
 
         // Verify the password
