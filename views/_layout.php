@@ -21,8 +21,9 @@
         rel="stylesheet" type="text/css" />
 
     <link href="assets/css/style.css" rel="stylesheet" />
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
