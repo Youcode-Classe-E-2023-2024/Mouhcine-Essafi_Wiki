@@ -1,8 +1,8 @@
 <?php
 
-if (isset($_POST['submit_r'])) {
+if (isset($_POST['email'])) {
     $userRegistration = new UserRegistration($db);
-    $registrationResult = $userRegistration->registerUser($_POST['f-name'], $_POST['l-name'], $_POST['reg_email'], $_POST['reg_password']);
-    // echo "<script>alert('$registrationResult');</script>";
+    $registrationResult = $userRegistration->registerUser($_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['password']);
+    echo $registrationResult;
+    die();
 }
-?>
