@@ -47,7 +47,7 @@ class UserRegistration
         }
 
         // Return success message or user ID, depending on your application needs
-        return "Registration successful for email: $email";
+        return "Registration successful";
     }
 
     private function validateEmail($email)
