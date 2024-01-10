@@ -3,10 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-lg-5">
                 <h5 class="text-white text-center mt-5 mb-4">Enter your informations</h5>
-                <form id="loginForm">
+                <form id="login_Form">
                     <div class="form-group">
-                        <input name="log_email" class="form-control py-4 w-100 mb-2" type="text" placeholder="email"/>
-                        <input name="log_password" class="form-control py-4 w-100 mb-3" type="password" placeholder="Password"/>
+                        <input name="email" class="form-control py-4 w-100 mb-2" type="text" placeholder="email"/>
+                        <input name="password" class="form-control py-4 w-100 mb-3" type="password" placeholder="Password"/>
                     <div class="form-group">
                         <button name="submit" class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
