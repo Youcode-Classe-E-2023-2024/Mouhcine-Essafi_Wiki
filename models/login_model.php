@@ -13,21 +13,23 @@ class UserLogin
     {
         // Validate input data
         // || (!$this->validatePassword($password))
-        if ((!$this->validateEmail($email)) )  {
+        if (!$this->validateEmail($email)) {
             return "Invalid Email";
         }
 
-        // Retrieve user data from the database
-        $query = "SELECT user_id, password FROM users WHERE email = '$email'";
-        $result = $this->db->query($query);
+        // Use prepared statement to prevent SQL injection
+        $query = "SELECT user_id, password FROM users WHERE email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
 
-        if (!$result) {
-            die('Query failed: ' . $this->db->error);
+        if (!$stmt) {
+            die('Query failed: ' . $this->db->errorInfo()[2]);
         }
 
-        $userData = $result->fetch_assoc();
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Check if the username exists
+        // Check if the email exists
         if (!$userData) {
             return "Email not registered";
         }
@@ -48,6 +50,7 @@ class UserLogin
         return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    // You can keep the existing password validation function if needed
     private function validatePassword($password)
     {
         // Add your own validation rules for the password
