@@ -1,6 +1,6 @@
 <?php
 
-class Categories {
+class categories {
     private $db;
 
     public function __construct($db)
