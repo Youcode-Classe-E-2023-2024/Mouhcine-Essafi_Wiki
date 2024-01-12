@@ -21,11 +21,11 @@ class Wiki {
 
     public function createWiki() {
 
-        $stmt = $this->db->prepare("INSERT INTO Wikis (title, content, id_user, categorie_id, img) VALUES (:title, :content, :auteur_id, :categorie_id, :img)");
+        $stmt = $this->db->prepare("INSERT INTO Wikis (title, content, id_user, id_category, img) VALUES (:title, :content, :id_user, :id_category, :img)");
         $stmt->bindParam(':title', $this->title);
         $stmt->bindParam(':content', $this->content);
-        $stmt->bindParam(':auteur_id', $this->auteur_id);
-        $stmt->bindParam(':categorie_id', $this->categorie_id);
+        $stmt->bindParam(':id_user', $this->auteur_id);
+        $stmt->bindParam(':id_category', $this->categorie_id);
         $stmt->bindParam(':img', $this->img_name);
         return $stmt->execute();
     }
@@ -58,9 +58,9 @@ class Wiki {
 
     public function addTagToWiki($wikiId, $tagId) {
 
-        $stmt = $this->db->prepare("INSERT INTO Wiki_Tags (wiki_id, tag_id) VALUES (:wiki_id, :tag_id)");
-        $stmt->bindParam(':wiki_id', $wikiId);
-        $stmt->bindParam(':tag_id', $tagId);
+        $stmt = $this->db->prepare("INSERT INTO Wikis_Tags (id_wiki, id_tag) VALUES (:id_wiki, :id_tag)");
+        $stmt->bindParam(':id_wiki', $wikiId);
+        $stmt->bindParam(':id_tag', $tagId);
         return $stmt->execute();
     }
 

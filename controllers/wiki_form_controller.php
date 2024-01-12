@@ -1,4 +1,11 @@
 <?php
+if (!isset($_SESSION['id'])) {
+    header("Location: index.php?page=login");
+    exit;
+}
+?>
+
+<?php
 
 $categoriesClass = new categories($db);
 $categories = $categoriesClass->getAllCategories();

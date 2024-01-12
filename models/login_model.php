@@ -18,7 +18,7 @@ class UserLogin
         }
 
         // Use prepared statement to prevent SQL injection
-        $query = "SELECT user_id, password FROM users WHERE email = :email";
+        $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
@@ -41,6 +41,9 @@ class UserLogin
 
         // Set user session or token for authentication
         // For simplicity, we'll just return the user ID in this example
+        $_SESSION["id"] = $userData['user_id'];
+        $_SESSION["name"] = $userData['first_name'];
+        $_SESSION["role"] = $userData['role'];
         return intval($userData['user_id']);
     }
 
@@ -57,4 +60,3 @@ class UserLogin
         return (bool) preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/', $password);
     }
 }
-?>
