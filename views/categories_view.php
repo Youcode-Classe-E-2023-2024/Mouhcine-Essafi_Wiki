@@ -5,8 +5,7 @@
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse"
-        aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
@@ -55,8 +54,7 @@
                     <div class="container-xl">
                         <div class="row">
                             <div class="col-lg-12">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#addEmployeeModal">
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
                                     <i class="material-icons">&#xE147;</i> <span>Add New Category</span>
                                 </button>
                             </div>
@@ -67,138 +65,97 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>Description</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Thomas Hardy</td>
-                                    <td>categorie description</td>
-                                    <td>
-                                        <button type="button" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#editEmployeeModal">
-                                            <i class="material-icons" data-toggle="tooltip" title="Edit"
-                                                style="color: yellow;">&#xE254;</i>
-                                        </button>
+                                <?php foreach ($allCategories as $category) : ?>
+                                    <tr>
+                                        <td>
+                                            <?= htmlspecialchars($category['name']) ?>
+                                        </td>
+                                        <td class="d-flex">
+                                            <!-- Edit Button -->
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editCategoryModal-<?= $category['id'] ?>">
+                                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                            </button>
 
-                                        <button type="button" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#deleteEmployeeModal">
-                                            <i class="material-icons" data-toggle="tooltip" title="Delete"
-                                                style="color: red;">&#xE872;</i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                            <!-- Delete Button -->
+                                            <form method="post" action="index.php?page=categories">
+                                                <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
+                                                <button type="submit" class="btn btn-danger" name="delete_catego">
+                                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <!-- Edit Modal -->
+                                    <div id="editCategoryModal-<?= $category['id'] ?>" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form method="post" action="index.php?page=categories">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Category</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <label>Name</label>
+                                                            <input type="text" name="name" value="<?= htmlspecialchars($category['name']) ?>" class="form-control" required>
+                                                        </div>
+                                                        <input type="hidden" name="category_id" value="<?= $category['id'] ?>">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                        <input type="submit" class="btn btn-info" value="Save Changes" name="update_catego">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add Categorie</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <!-- Add Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="index.php?page=categories" >
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Categorie</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" required>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" required></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Add" name="add_catego">
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Edit Categorie</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" required></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-info" value="Save">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Delete Employee</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure you want to delete these Records?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!------------------- end   data table----------------------------------------------->
+    </div>
+    <!------------------- end   data table----------------------------------------------->
     </div>
     </div>
     </div>
 </section>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Activate Bootstrap tooltip
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
-        });
-
-        // Select/Deselect checkboxes
-        var checkbox = $('table tbody input[type="checkbox"]');
-        $("#selectAll").click(function () {
-            if (this.checked) {
-                checkbox.each(function () {
-                    this.checked = true;
-                });
-            } else {
-                checkbox.each(function () {
-                    this.checked = false;
-                });
-            }
-        });
-        checkbox.click(function () {
-            if (!this.checked) {
-                $("#selectAll").prop("checked", false);
-            }
         });
     });
 </script>
