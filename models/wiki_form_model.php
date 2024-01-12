@@ -1,6 +1,7 @@
 <?php
 
-class Wiki {
+class Wiki
+{
     private $db;
     public $id;
     public $title;
@@ -9,7 +10,8 @@ class Wiki {
     public $categorie_id;
     public $img_name;
 
-    public function __construct($db, $title, $content, $auteur_id, $categorie_id, $img_name) {
+    public function __construct($db, $title, $content, $auteur_id, $categorie_id, $img_name)
+    {
 
         $this->db = $db;
         $this->title = $title;
@@ -19,7 +21,8 @@ class Wiki {
         $this->img_name = $img_name;
     }
 
-    public function createWiki() {
+    public function createWiki()
+    {
 
         $stmt = $this->db->prepare("INSERT INTO Wikis (title, content, id_user, id_category, img) VALUES (:title, :content, :id_user, :id_category, :img)");
         $stmt->bindParam(':title', $this->title);
@@ -30,7 +33,8 @@ class Wiki {
         return $stmt->execute();
     }
 
-    public function updateWiki($id) {
+    public function updateWiki($id)
+    {
 
         $stmt = $this->db->prepare("UPDATE Wikis SET title = :title, content = :content, categorie_id = :categorie_id, img = :img WHERE id = :id");
         $stmt->bindParam(':title', $this->title);
@@ -41,7 +45,8 @@ class Wiki {
         return $stmt->execute();
     }
 
-    public function getWikiById($id) {
+    public function getWikiById($id)
+    {
 
         $stmt = $this->db->prepare("SELECT * FROM Wikis WHERE id = :id");
         $stmt->bindParam(':id', $id);
@@ -49,14 +54,16 @@ class Wiki {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAllWikis() {
+    public function getAllWikis()
+    {
 
         $stmt = $this->db->prepare("SELECT * FROM Wikis");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function addTagToWiki($wikiId, $tagId) {
+    public function addTagToWiki($wikiId, $tagId)
+    {
 
         $stmt = $this->db->prepare("INSERT INTO Wikis_Tags (id_wiki, id_tag) VALUES (:id_wiki, :id_tag)");
         $stmt->bindParam(':id_wiki', $wikiId);
@@ -64,11 +71,10 @@ class Wiki {
         return $stmt->execute();
     }
 
-    public function getLastInsertId() {
+    public function getLastInsertId()
+    {
 
         return $this->db->lastInsertId();
-    }    
-
+    }
     // Additional methods can be added as needed
 }
-?>
