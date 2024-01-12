@@ -3,10 +3,8 @@
         padding-top: 4.5rem
     }
 </style>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-md-none">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse"
-        aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
@@ -55,8 +53,7 @@
                     <div class="container-xl">
                         <div class="row">
                             <div class="col-lg-12">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#addEmployeeModal">
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEmployeeModal">
                                     <i class="material-icons">&#xE147;</i> <span>Add New Tag</span>
                                 </button>
                             </div>
@@ -71,15 +68,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($alltags as $tags): ?>
-                                <tr>
-                                    <td>
-                                        <?= htmlspecialchars($tags['name']) ?>
-                                    </td>
-                                    <td>
-                                        <!-- Edit Button -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#editTagModal-<?= $tags['id'] ?>">
+                                <?php foreach ($alltags as $tags) : ?>
+                                    <tr>
+                                        <td>
+                                            <?= htmlspecialchars($tags['name']) ?>
+                                        </td>
+                                        <td>
+                                            <!-- Edit Button -->
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editTagModal-<?= $tags['id'] ?>">
                                                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                             </button>
 
@@ -87,8 +83,7 @@
                                             <form method="post" action="index.php?page=tags">
                                                 <input type="hidden" name="tag_id" value="<?= $tags['id'] ?>">
                                                 <button type="submit" class="btn btn-danger" name="delete_tags">
-                                                    <i class="material-icons" data-toggle="tooltip"
-                                                        title="Delete">&#xE872;</i>
+                                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                                 </button>
                                             </form>
                                         </td>
@@ -100,24 +95,18 @@
                                                 <form method="post" action="index.php?page=tags">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title">Edit Tag</h4>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-hidden="true">&times;</button>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group">
                                                             <label>Name</label>
-                                                            <input type="text" name="name"
-                                                                value="<?= htmlspecialchars($tags['name']) ?>"
-                                                                class="form-control" required>
+                                                            <input type="text" name="name" value="<?= htmlspecialchars($tags['name']) ?>" class="form-control" required>
                                                         </div>
-                                                        <input type="hidden" name="tag_id"
-                                                            value="<?= $tags['id'] ?>">
+                                                        <input type="hidden" name="tag_id" value="<?= $tags['id'] ?>">
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <input type="button" class="btn btn-default" data-dismiss="modal"
-                                                            value="Cancel">
-                                                        <input type="submit" class="btn btn-info" value="Save Changes"
-                                                            name="update_tag">
+                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                        <input type="submit" class="btn btn-info" value="Save Changes" name="update_tag">
                                                     </div>
                                                 </form>
                                             </div>
@@ -161,10 +150,10 @@
     </div>
 </section>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         // Activate Bootstrap tooltip
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         });
     });
