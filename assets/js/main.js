@@ -27,14 +27,14 @@ window.addEventListener('DOMContentLoaded', () => {
 // Handle login_form submission for login
 const loginform = document.getElementById("login_Form");
 
-if (loginform){
+if (loginform) {
   loginform.addEventListener("submit", function (event) {
     // Prevent the default form submission
     event.preventDefault();
-  
+
     // Create a FormData object with the form data
     const formData = new FormData(this);
-  
+
     // Send a POST request to the server
     fetch("index.php?page=login", {
       method: "POST",
@@ -85,7 +85,7 @@ if (registerform) {
           // If register is successful, display success message
           alertComponent(data.trim());
           // Redirect to the home page after a delay
-          
+
           setTimeout(() => {
             window.location.href = "index.php?page=login";
           }, 1000);
