@@ -17,7 +17,6 @@ class UserLogin
             return "Invalid Email";
         }
 
-        // Use prepared statement to prevent SQL injection
         $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':email', $email);
@@ -39,24 +38,32 @@ class UserLogin
             return "Invalid password";
         }
 
-        // Set user session or token for authentication
-        // For simplicity, we'll just return the user ID in this example
         $_SESSION["id"] = $userData['user_id'];
         $_SESSION["name"] = $userData['first_name'];
         $_SESSION["role"] = $userData['role'];
         return intval($userData['user_id']);
     }
 
+    public function countUsers()
+    {
+        $query = "SELECT COUNT(*) FROM users";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        if (!$stmt) {
+            die('Query failed: ' . $this->db->errorInfo()[2]);
+        }
+
+        return intval($stmt->fetchColumn());
+    }
+
     private function validateEmail($email)
     {
-        // Add your own validation rules for the email address
         return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    // You can keep the existing password validation function if needed
     private function validatePassword($password)
     {
-        // Add your own validation rules for the password
         return (bool) preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/', $password);
     }
 }

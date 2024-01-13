@@ -13,7 +13,7 @@ $categories = $categoriesClass->getAllCategories();
 $tagsClass = new Tags($db);
 $tags = $tagsClass->getAllTags();
 
-
+// dd($_POST);
 if (isset($_POST['wiki'])) {
     $auteurId = $_SESSION['id'];
 

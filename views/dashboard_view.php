@@ -54,27 +54,35 @@
                 
                 
                 <div class="row text-white mb-4">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6 mb-3">
                         <div class="card bg-primary">
                             <div class="card-body">
-                                <h5 class="card-title">Total Visits</h5>
-                                <h2 class="card-text">1,234</h2>
+                                <h5 class="card-title">Total Users</h5>
+                                <h2 class="card-text"><?php echo $userCount ;?></h2>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6 mb-3">
                         <div class="card bg-success">
                             <div class="card-body">
-                                <h5 class="card-title">New Users</h5>
-                                <h2 class="card-text">567</h2>
+                                <h5 class="card-title">Total Wikis</h5>
+                                <h2 class="card-text"><?php echo $wikisCount ;?></h2>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-6 mb-3">
                         <div class="card bg-info">
                             <div class="card-body">
-                                <h5 class="card-title">Total Sales</h5>
-                                <h2 class="card-text">$8,924</h2>
+                                <h5 class="card-title">Total Tags</h5>
+                                <h2 class="card-text"><?php echo $TagsCount ;?></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="card bg-info">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Categories</h5>
+                                <h2 class="card-text"><?php echo $TagsCount ;?></h2>
                             </div>
                         </div>
                     </div>

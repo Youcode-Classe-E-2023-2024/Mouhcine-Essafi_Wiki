@@ -47,6 +47,19 @@ class Tags {
         return $tags;
     }
 
+    public function countTags()
+    {
+        $query = "SELECT COUNT(*) FROM tags";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        if (!$stmt) {
+            die('Query failed: ' . $this->db->errorInfo()[2]);
+        }
+
+        return intval($stmt->fetchColumn());
+    }
+
 }
 
 ?>

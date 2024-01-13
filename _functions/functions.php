@@ -12,7 +12,7 @@ function dd($var) {
     print_r($var);
     echo '</code>';
     echo '</pre>';
-    die();
+    // die();
 }
 
 /**

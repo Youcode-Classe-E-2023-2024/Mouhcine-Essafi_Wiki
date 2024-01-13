@@ -55,12 +55,17 @@ class Wiki
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getAllWikis()
+    public function countWikis()
     {
-
-        $stmt = $this->db->prepare("SELECT * FROM Wikis");
+        $query = "SELECT COUNT(*) FROM Wikis";
+        $stmt = $this->db->prepare($query);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$stmt) {
+            die('Query failed: ' . $this->db->errorInfo()[2]);
+        }
+
+        return intval($stmt->fetchColumn());
     }
 
     public function addTagToWiki($wikiId, $tagId)
