@@ -9,7 +9,7 @@
 function dd($var) {
     echo '<pre>';
     echo '<code>';
-    var_dump($var);
+    print_r($var);
     echo '</code>';
     echo '</pre>';
     die();
