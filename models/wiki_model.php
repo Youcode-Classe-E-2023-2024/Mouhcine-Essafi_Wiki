@@ -120,4 +120,39 @@ class Wiki
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function searchForTitles($title)
+    {
+        global $db;
+        $title = "%" . $title . "%";
+        $sql = "SELECT * FROM Wikis WHERE title LIKE :title AND deleted_at IS NULL";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":title", $title, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static function searchForTags($tag)
+    {
+        global $db;
+        $tag = "%" . $tag . "%";
+        $sql = "SELECT DISTINCT w.* FROM Wikis w
+                INNER JOIN Wiki_Tags wt ON w.id = wt.wiki_id
+                INNER JOIN Tags t ON wt.tag_id = t.id
+                WHERE t.name LIKE :tag AND w.deleted_at IS NULL";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":tag", $tag, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    static function searchForCategories($category) {
+        global $db;
+        $category = "%" . $category . "%";
+        $sql = "SELECT * FROM Wikis w JOIN Categories c ON w.categorie_id = c.id WHERE c.name LIKE :category";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(":category", $category, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
